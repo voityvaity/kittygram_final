@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 node_modules
 build
+=======
+# frontend/.dockerignore
+node_modules
+build
+.env
+>>>>>>> master

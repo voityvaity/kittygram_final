@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+# docker-compose.yml
+>>>>>>> master
 version: '3'
 
 volumes:
@@ -7,11 +11,16 @@ volumes:
 services:
   db:
     image: postgres:13
+<<<<<<< HEAD
+=======
+    env_file: .env
+>>>>>>> master
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
     build: ./backend/
     env_file: .env
+<<<<<<< HEAD
   frontend:
     env_file: .env
     build: ./frontend/
@@ -25,3 +34,22 @@ services:
       - 9000:80
     volumes:
       - static:/static
+=======
+    volumes:
+      - static:/backend_static
+
+  frontend:
+    env_file: .env
+    build: ./frontend/
+    command: cp -r /app/build/. /frontend_static/
+    volumes:
+      - static:/frontend_static
+
+  nginx:
+    build: ./nginx/
+    env_file: .env
+    volumes:
+      - static:/staticfiles
+    ports:
+      - 8000:80
+>>>>>>> master
