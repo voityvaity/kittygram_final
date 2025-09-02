@@ -8,12 +8,8 @@ SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$
 
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = []
-=======
 ALLOWED_HOSTS = ['localhost', '84.201.177.93',
-                 '127.0.0.1', '84.201.177.93:8000']
->>>>>>> master
+                 '127.0.0.1', '84.201.177.93:8000', '84.201.177.93:9000']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,18 +21,12 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework',
     'djoser',
-<<<<<<< HEAD
-=======
     'corsheaders',
->>>>>>> master
     'cats.apps.CatsConfig',
 ]
 
 MIDDLEWARE = [
-<<<<<<< HEAD
-=======
     'corsheaders.middleware.CorsMiddleware',
->>>>>>> master
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -71,8 +61,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-<<<<<<< HEAD
-=======
         # Меняем настройку Django: теперь для работы будет использоваться
         # бэкенд postgresql
         'ENGINE': 'django.db.backends.postgresql',
@@ -81,7 +69,6 @@ DATABASES = {
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
         'HOST': os.getenv('DB_HOST', ''),
         'PORT': os.getenv('DB_PORT', 5432)
->>>>>>> master
     }
 }
 
@@ -117,11 +104,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-<<<<<<< HEAD
-=======
 STATIC_ROOT = BASE_DIR / 'collected_static'
 
->>>>>>> master
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
