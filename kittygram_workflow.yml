@@ -219,9 +219,18 @@ jobs:
       - name: Set up test environment variables
         run: |
           echo "REPO_OWNER=feninea" >> $GITHUB_ENV
-          echo "KITTYGRAM_DOMAIN=http://84.201.177.93:9000/" >> $GITHUB_ENV
-          echo "TASKI_DOMAIN=http://84.201.177.93:8000/" >> $GITHUB_ENV
+          echo "KITTYGRAM_DOMAIN=https://84.201.177.93:9443/" >> $GITHUB_ENV
+          echo "TASKI_DOMAIN=https://84.201.177.93:8000/" >> $GITHUB_ENV
           echo "DOCKERHUB_USERNAME=feninea" >> $GITHUB_ENV
+
+      - name: Create tests.yml file
+        run: |
+          cat > tests.yml << EOF
+          repo_owner: feninea
+          kittygram_domain: https://84.201.177.93:9443/
+          taski_domain: https://84.201.177.93:8000/
+          dockerhub_username: feninea
+          EOF
 
       - name: Run external tests
         run: |
