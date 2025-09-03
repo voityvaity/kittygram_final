@@ -7,6 +7,13 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     libpq-dev \
     gcc \
+    libjpeg-dev \
+    zlib1g-dev \
+    libfreetype6-dev \
+    liblcms2-dev \
+    libopenjp2-7-dev \
+    libtiff5-dev \
+    libwebp-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Переходим в образе в директорию /app: в ней будем хранить код проекта.
