@@ -1,5 +1,5 @@
 #tests.yml
 repo_owner: feninea
-kittygram_domain: http://84.201.177.93:9000/
-taski_domain: http://84.201.177.93:8000/
+kittygram_domain: https://84.201.177.93:9443/
+taski_domain: https://84.201.177.93:8000/
 dockerhub_username: feninea

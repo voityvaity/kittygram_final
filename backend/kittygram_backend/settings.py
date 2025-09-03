@@ -6,10 +6,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '84.201.177.93',
-                 '127.0.0.1', '84.201.177.93:8000', '84.201.177.93:9000']
+                 '127.0.0.1', '84.201.177.93:8000', '84.201.177.93:9000', '84.201.177.93:9443']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -59,10 +59,6 @@ WSGI_APPLICATION = 'kittygram_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # Меняем настройку Django: теперь для работы будет использоваться
-        # бэкенд postgresql
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('POSTGRES_DB', 'django'),
         'USER': os.getenv('POSTGRES_USER', 'django'),
@@ -124,3 +120,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 
 }
+
+# Настройки CORS
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
