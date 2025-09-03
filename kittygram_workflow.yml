@@ -225,7 +225,7 @@ jobs:
 
       - name: Create tests.yml file
         run: |
-          cat > tests.yml << EOF
+          cat > tests.yml << 'EOF'
           repo_owner: feninea
           kittygram_domain: https://84.201.177.93:9443/
           taski_domain: https://84.201.177.93:8000/
