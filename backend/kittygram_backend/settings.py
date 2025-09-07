@@ -1,16 +1,15 @@
 # flake8: noqa
 import os
 from pathlib import Path
+from .env import SK, AH, DEBUG_VALUE
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
+SECRET_KEY = SK
 
-DEBUG = False
+DEBUG = DEBUG_VALUE
 
-ALLOWED_HOSTS = ['localhost', '84.201.177.93',
-                 '127.0.0.1', '84.201.177.93:9000', '84.201.177.93:9443',
-                 'kittygram.bazooza.ru']
+ALLOWED_HOSTS = AH
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -88,7 +87,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
@@ -110,11 +109,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', 
+        'rest_framework.permissions.IsAuthenticated',
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
