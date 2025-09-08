@@ -15,7 +15,7 @@ if not SECRET_KEY:
 
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,84.201.177.93,kittygram.bazooza.ru').split(',')
 if ALLOWED_HOSTS == ['']:
     raise RuntimeError("ALLOWED_HOSTS is not set in environment variables")
 
