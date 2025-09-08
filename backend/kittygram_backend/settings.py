@@ -3,20 +3,15 @@
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Получаем SECRET_KEY из переменных окружения
-SECRET_KEY = os.getenv('SK')
+SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
 
-# Получаем DEBUG из переменных окружения (преобразуем строку в boolean)
-DEBUG = os.getenv('DEBUG_VALUE', 'False').lower() == 'true'
+DEBUG = False
 
-# Получаем ALLOWED_HOSTS из переменных окружения (разделяем по запятым)
-ALLOWED_HOSTS = os.getenv('AH', '').split(',')
+ALLOWED_HOSTS = ['localhost', '84.201.177.93', '127.0.0.1',
+                 '84.201.177.93:9000', '84.201.177.93:9443', 
+                 'kittygram.bazooza.ru']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
