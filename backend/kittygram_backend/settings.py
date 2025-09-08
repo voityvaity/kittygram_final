@@ -1,7 +1,7 @@
 # flake8: noqa
 import os
 from pathlib import Path
-from .env import SK, AH, DEBUG_VALUE
+from env import SK, AH, DEBUG_VALUE
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
