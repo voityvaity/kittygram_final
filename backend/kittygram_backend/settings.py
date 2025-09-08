@@ -5,13 +5,15 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
+SECRET_KEY = os.getenv('SECRET_KEY')
+if not SECRET_KEY:
+    raise RuntimeError("SECRET_KEY is not set in environment variables")
 
-DEBUG = False
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = ['localhost', '84.201.177.93', '127.0.0.1',
-                 '84.201.177.93:9000', '84.201.177.93:9443', 
-                 'kittygram.bazooza.ru']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+if ALLOWED_HOSTS == ['']:
+    raise RuntimeError("ALLOWED_HOSTS is not set in environment variables")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
