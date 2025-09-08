@@ -1,15 +1,22 @@
 # flake8: noqa
+# kittygram_backend/settings.py
 import os
 from pathlib import Path
-from env import SK, AH, DEBUG_VALUE
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = SK
+# Получаем SECRET_KEY из переменных окружения
+SECRET_KEY = os.getenv('SK')
 
-DEBUG = DEBUG_VALUE
+# Получаем DEBUG из переменных окружения (преобразуем строку в boolean)
+DEBUG = os.getenv('DEBUG_VALUE', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = AH
+# Получаем ALLOWED_HOSTS из переменных окружения (разделяем по запятым)
+ALLOWED_HOSTS = os.getenv('AH', '').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,10 +68,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('POSTGRES_DB', 'django'),
-        'USER': os.getenv('POSTGRES_USER', 'django'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', ''),
-        'PORT': os.getenv('DB_PORT', 5432)
+        'USER': os.getenv('POSTGRES_USER', 'django_user'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'mysecretpassword'),
+        'HOST': os.getenv('DB_HOST', 'db'),
+        'PORT': os.getenv('DB_PORT', '5432')
     }
 }
 
