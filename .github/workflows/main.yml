@@ -245,7 +245,7 @@ jobs:
 
       - name: Run external tests
         run: |
-          python -m pytest tests/ --ignore=tests/test_connections.py -v
+          python -m pytest tests/ --ignore=tests/test_connection.py -v
 
   send_message:
     runs-on: ubuntu-latest
