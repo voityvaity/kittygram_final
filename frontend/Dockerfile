@@ -1,5 +1,5 @@
 #dockerfile frontend
-FROM node:18
+FROM node:22-alpine
 WORKDIR /app
 
 COPY package.json package.json
@@ -11,7 +11,4 @@ COPY . .
 RUN npm run build
 #RUN npm install --global http-server
 
-#CMD ["npx", "-y", "http-server", "-p", "8000", "/app/build"]
-
-# Просто копируем файлы, без запуска сервера
-CMD ["cp", "-r", "/app/build/.", "/frontend_static/"]
+CMD ["cp", "-r", "/app/dist/.", "/frontend_static/"]

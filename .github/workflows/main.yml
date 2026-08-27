@@ -12,6 +12,8 @@ jobs:
       postgres:
         image: postgres:13.10
         env:
+          SECRET_KEY: test-only-secret-key-not-used-in-production
+          ALLOWED_HOSTS: localhost,127.0.0.1
           POSTGRES_USER: django_user
           POSTGRES_PASSWORD: django_password
           POSTGRES_DB: django_db
@@ -19,23 +21,11 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.12
-
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libjpeg-dev \
-            zlib1g-dev \
-            libfreetype6-dev \
-            liblcms2-dev \
-            libopenjp2-7-dev \
-            libtiff5-dev \
-            libwebp-dev
 
       - name: Install dependencies
         run: |

@@ -20,7 +20,7 @@ services:
   frontend:
     image: feninea/kittygram_frontend
     env_file: .env
-    command: cp -r /app/build/. /staticfiles/
+    command: cp -r /app/dist/. /staticfiles/
     volumes:
       - static_volume:/staticfiles
   nginx:

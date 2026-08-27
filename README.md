@@ -1,26 +1,78 @@
-#  Как работать с репозиторием финального задания
+# Kittygram
 
-## Что нужно сделать
+Веб-приложение для публикации карточек котов и их достижений. Проект показывает полный путь backend-приложения: REST API, авторизацию, работу с PostgreSQL и медиафайлами, контейнеризацию и CI/CD.
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
+## Возможности
 
-## Как проверить работу с помощью автотестов
+- регистрация пользователей и токен-аутентификация;
+- создание, просмотр, редактирование и удаление карточек котов;
+- загрузка изображений в формате Base64;
+- привязка достижений к карточкам;
+- пагинация API;
+- автоматические тесты, сборка Docker-образов и развёртывание через GitHub Actions.
 
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
+## Стек
+
+Python, Django, Django REST Framework, Djoser, PostgreSQL, React, Docker Compose, Nginx, GitHub Actions.
+
+## Архитектура
+
+- `backend/` — Django REST API и бизнес-логика;
+- `frontend/` — клиент на React;
+- `nginx/` — раздача статики, медиафайлов и проксирование запросов;
+- `docker-compose.yml` — локальный запуск сервисов;
+- `.github/workflows/main.yml` — тестирование, сборка образов и деплой.
+
+Основные API-маршруты доступны по адресу `/api/`: `cats/`, `achievements/`, а также маршруты Djoser для пользователей и токенов.
+
+## Локальный запуск
+
+1. Клонируйте репозиторий и перейдите в его каталог.
+2. Создайте файл `.env` на основе `.env.example` и задайте собственные значения.
+3. Запустите сервисы:
+
+```bash
+docker compose up --build
 ```
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
+После запуска приложение доступно на `http://localhost:9000`.
 
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
+## Переменные окружения
 
-## Чек-лист для проверки перед отправкой задания
+```env
+POSTGRES_DB=kittygram
+POSTGRES_USER=kittygram_user
+POSTGRES_PASSWORD=replace_with_a_strong_password
+DB_HOST=db
+DB_PORT=5432
+SECRET_KEY=replace_with_a_long_random_value
+DEBUG=False
+ALLOWED_HOSTS=localhost,127.0.0.1
+CORS_ALLOWED_ORIGINS=http://localhost:9000
+```
 
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+Настоящие секреты не должны попадать в Git: файл `.env` исключён через `.gitignore`, а CI/CD получает секреты из GitHub Actions Secrets.
+
+## Проверки
+
+Backend-проверки:
+
+```bash
+python -m flake8 backend/
+cd backend
+python manage.py test
+```
+
+Frontend-проверки:
+
+```bash
+cd frontend
+npm ci
+npm test -- --watchAll=false
+```
+
+GitHub Actions запускает проверки при каждом push в `main`. Этапы публикации образов и деплоя выполняются только после успешных тестов.
+
+## Что демонстрирует проект
+
+Проект подтверждает практику разработки REST API на Django REST Framework, моделирования связей в PostgreSQL, работы с аутентификацией, Docker Compose, Nginx и автоматизацией CI/CD.
